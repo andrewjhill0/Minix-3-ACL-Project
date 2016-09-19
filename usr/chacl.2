@@ -1,0 +1,51 @@
+.\"
+.TH CHACL 2 "November 28, 2012"
+.UC 4
+.SH NAME
+chacl \- change acl file
+.SH SYNOPSIS
+.nf
+.ft B
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int chacl(const char *type, const char *name, const char *perm, const char *file(s))
+.ig \" You never know
+.PP
+
+..
+.fi
+.SH DESCRIPTION
+The file(s) whose name
+is given by *\file(s)
+.ig
+or referenced by the descriptor
+.I fd
+..
+has the ACL file changed to either add in a new entry for the given file and ID match or altered to reflect new permissions.
+.fi
+.RE
+.PP
+.PP
+Only the super-user may change the ACL.
+.PP
+.SH "RETURN VALUE
+Upon successful completion, a value of 0 is returned.
+Otherwise, a value of \-1 is returned and
+.B errno
+is set to indicate the error.
+.SH "ERRORS
+.B Chacl
+will fail and the file mode will be unchanged if:
+.TP 15
+[usage()]
+The user did not properly choose either user or group (-u or -g)
+.TP 15
+[usage1()]
+he user did not correctly choose add or subtract permissions (+/-)
+.TP 15
+[usage2]
+Permissions not set correctly.  Make sure to use uppercase letters in the order of R then W then X.
+.TP 15 
+[usage3()]
+User is trying to place too many files into the command.  The current maximum is 5 files.

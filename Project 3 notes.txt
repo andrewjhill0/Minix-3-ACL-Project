@@ -1,0 +1,43 @@
+useradd -u 600 ryan
+id ryan
+
+su ryan
+
+whoami
+
+ls -ial  (print out inode numbers)
+
+ls -l /etc/ACL
+
+printout the row contents of the ACL as you read through it (so we know what's in it)
+
+do_chacl
+	- filename, id (uid/gid), g_or_u, mode (+RW/R)  (all from the system call)
+	- look up vnode for the file (in test.c)
+	- look up vnode for ACL (/etc/ACL)
+	- use code for do_chmod for the lookups
+	- permissions check
+	- check the ACL for identical entry (file and uid/gid match) (update check) -> add new entry
+	- OR modify existing entry with new 
+	- return resources
+	- 
+	
+modify forbidden to enforce our ACL 
+
+perm_bits |= getACL(vp->v_inode_nr, uid, gid);
+
+
+
+ACL structure
+
+inode | ryan (id, and what kind of id) |   |
+inode | ryan | X |
+      |      |   |   
+	  
+	  all fixed size; makes structure uniform
+	  
+	  
+	  
+in servers: make install
+
+inside tools: make install
